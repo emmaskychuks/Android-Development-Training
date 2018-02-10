@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">SlotFun</string>
-    <string name="amount_label">Amount:</string>
-    <string name="back_account_label">Bank:</string>
+    <string name="amount_label">Amount</string>
+    <string name="back_account_label">Bank</string>
     <string name="bank_account_display"></string>
     <string name="new_game_button">New Game</string>
     <string name="set_value_button">Set Value</string>
     <string name="pull_lever_button">Pull Lever</string>
+    <string name="app_icon">App Icon</string>
 </resources>
