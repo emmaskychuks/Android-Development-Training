@@ -16,13 +16,13 @@
         android:text="@string/amount_label"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/et_amount_display"
+        app:layout_constraintBottom_toTopOf="@id/et_amount_input"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/et_amount_display"
+        android:id="@+id/et_amount_input"
         android:layout_width="93dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -30,6 +30,7 @@
         android:layout_marginTop="8dp"
         android:inputType="number"
         android:textSize="20sp"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +61,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/background"
         android:text=""
+        android:textSize="22sp"
+        android:textAlignment="center"
         android:inputType="none"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,6 +80,8 @@
         android:background="@drawable/background"
         android:inputType="none"
         android:text=""
+        android:textSize="22sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         android:textColor="@android:color/black"
@@ -96,6 +101,8 @@
         android:background="@drawable/background"
         android:inputType="none"
         android:text=""
+        android:textSize="22sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@android:color/black"
@@ -115,6 +122,8 @@
         android:background="@drawable/background"
         android:inputType="none"
         android:text=""
+        android:textSize="22sp"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_reel1_display"
@@ -136,7 +145,7 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_amount_display"
+        app:layout_constraintTop_toBottomOf="@id/et_amount_input"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
