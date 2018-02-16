@@ -75,34 +75,6 @@ public class MainActivity extends AppCompatActivity
 
     };
 
-    private TextWatcher accountTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-        @Override
-        public void afterTextChanged(Editable s) {
-            if(!s.toString().equals("$0")) {
-                double currentAccount = Double.parseDouble(s.toString().substring(1));
-                if (currentAccount <= 0) {
-                    Toast.makeText(getApplicationContext(), "Unfortunately, you've lost all your money. The game will now restart",
-                            Toast.LENGTH_LONG).show();
-                    resetGame();
-                } else if (currentAccount <= 4) {
-                    Toast.makeText(getApplicationContext(), "Unfortunately, you've don't have sufficient funds to keep playing." +
-                            "Press 'NEW GAME' to restart", Toast.LENGTH_LONG).show();
-                    pullLeverButton.setEnabled(false);
-                }
-                else
-                {
-                    //Nothing
-                }
-            }
-        }
-    };
-
     private void setValueEffect() {
         int currentInput = Integer.parseInt(amountInput.getText().toString());
         if (currentInput < 100 || currentInput > 500){
@@ -120,22 +92,26 @@ public class MainActivity extends AppCompatActivity
     }
     private void pullLeverEffect()
     {
-        int ree1 = randomNumberGenerator.nextInt(9) + 1;
-        int reel2 = randomNumberGenerator.nextInt(9) + 1;
-        int reel3 = randomNumberGenerator.nextInt(9) + 1;
+        if(pullLeverButton.isEnabled()) {
+            int ree1 = randomNumberGenerator.nextInt(9) + 1;
+            int reel2 = randomNumberGenerator.nextInt(9) + 1;
+            int reel3 = randomNumberGenerator.nextInt(9) + 1;
 
-        double currentAccountValue = Double.parseDouble(accountDisplay.getText().toString().substring(1)) - 5.0;
-        accountDisplay.setText("$" + Double.toString(currentAccountValue));
+            double currentAccountValue = Double.parseDouble(accountDisplay.getText().toString().substring(1)) - 5.0;
+            accountDisplay.setText("$" + Double.toString(currentAccountValue));
 
-        //Display random numbers to the reels
-        reel1Display.setText(Integer.toString(ree1));
-        reel2Display.setText(Integer.toString(reel2));
-        reel3Display.setText(Integer.toString(reel3));
+            //Display random numbers to the reels
+            reel1Display.setText(Integer.toString(ree1));
+            reel2Display.setText(Integer.toString(reel2));
+            reel3Display.setText(Integer.toString(reel3));
 
-        checkForPlayerWinnings(ree1, reel2, reel3, currentAccountValue);
+            checkForPlayerWinnings(ree1, reel2, reel3);
+            checkBankAccount();
+        }
     }
-    private void checkForPlayerWinnings(int reel1, int reel2, int reel3, double currentAccountValue)
+    private void checkForPlayerWinnings(int reel1, int reel2, int reel3)
     {
+        double currentAccountValue = Double.parseDouble(accountDisplay.getText().toString().substring(1));
         if(reel1 == reel2 || reel1 == reel3 || reel2 == reel3) {
             accountDisplay.setText("$" + Double.toString(currentAccountValue + 10.0));
         }
@@ -155,6 +131,27 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+    private void checkBankAccount()
+    {
+        if(!accountDisplay.getText().equals("$0")) {
+            double currentAccount = Double.parseDouble(accountDisplay.getText().toString().substring(1));
+            if (currentAccount <= 0.0) {
+                resetGame();
+                pullLeverButton.setEnabled(false);
+                Toast.makeText(getApplicationContext(), "Unfortunately, you've lost all your money. The game will now restart",
+                        Toast.LENGTH_LONG).show();
+            } else if (currentAccount <= 4.0) {
+                Toast.makeText(getApplicationContext(), "Unfortunately, you've don't have sufficient funds to keep playing." +
+                        "Press 'NEW GAME' to restart", Toast.LENGTH_LONG).show();
+                pullLeverButton.setEnabled(false);
+            } else if (currentAccount >= 1000.0) {
+                resetGame();
+                Toast.makeText(getApplicationContext(), "Congrats!, you've cleared the slot machine. The game will now restart",
+                        Toast.LENGTH_LONG).show();
+                pullLeverButton.setEnabled(false);
+            }
+        }
+    }
     private void resetGame()
     {
         accountDisplay.setText("$0");
@@ -164,7 +161,6 @@ public class MainActivity extends AppCompatActivity
         reel3Display.setText("");
         reel2Display.setText("");
         reel1Display.setText("");
-        amountInput.requestFocus();
 
         if(!setValueButton.isEnabled())
             setValueButton.setEnabled(true);
@@ -183,13 +179,11 @@ public class MainActivity extends AppCompatActivity
         setValueButton = (Button) findViewById(R.id.bt_set_value);
         pullLeverButton = (Button) findViewById(R.id.bt_pull_lever);
 
-        amountInput.addTextChangedListener(amountInputTextWatcher);
-        accountDisplay.addTextChangedListener(accountTextWatcher);
         newGameButton.setOnClickListener(buttonListener);
         setValueButton.setOnClickListener(buttonListener);
         pullLeverButton.setOnClickListener(buttonListener);
         pullLeverButton.setEnabled(false);
-
+        amountInput.addTextChangedListener(amountInputTextWatcher);
     }
 }
 
