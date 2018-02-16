@@ -70,9 +70,11 @@ public class MainActivity extends AppCompatActivity
                 if (currentInput < 100 || currentInput > 500)
                     Toast.makeText(getApplicationContext(),
                             "Hello, please type in a amount between 100 and 500", Toast.LENGTH_SHORT).show();
+                if(s.toString().trim().length() >= 6)  //Prevents the app from crashing when input is large
+                    amountInput.setText("");
+
             }
         }
-
     };
 
     private void setValueEffect() {
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity
             accountDisplay.setText("$" + amountInput.getText());
         }
     }
+
     private void pullLeverEffect()
     {
         if(pullLeverButton.isEnabled()) {
