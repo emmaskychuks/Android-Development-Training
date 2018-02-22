@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            pullLeverButton.setEnabled(true);
         }
 
         @Override
@@ -79,10 +78,16 @@ public class MainActivity extends AppCompatActivity
 
     private void setValueEffect() {
         int currentInput = Integer.parseInt(amountInput.getText().toString());
+        pullLeverButton.setEnabled(true);
         if (currentInput < 100 || currentInput > 500){
             Toast.makeText(getApplicationContext(),
                     "Hello, please type in an amount between 100 and 500", Toast.LENGTH_SHORT).show();
             amountInput.setText("");
+        }
+        else if(amountInput.getText().toString().length() <= 0)
+        {
+            Toast.makeText(getApplicationContext(),
+                    "Hello, please type in a amount between 100 and 500", Toast.LENGTH_SHORT).show();
         }
         else {
             setValueButton.setEnabled(false);
