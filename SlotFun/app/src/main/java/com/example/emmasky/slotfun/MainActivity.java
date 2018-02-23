@@ -60,11 +60,14 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(s.toString().equals(""))
+                setValueButton.setEnabled(false);
         }
 
         @Override
         public void afterTextChanged(Editable s) {
             if(!s.toString().equals("")) {
+                setValueButton.setEnabled(true);
                 int currentInput = Integer.parseInt(s.toString());
                 if (currentInput < 100 || currentInput > 500)
                     Toast.makeText(getApplicationContext(),
@@ -170,8 +173,8 @@ public class MainActivity extends AppCompatActivity
         reel2Display.setText("");
         reel1Display.setText("");
 
-        if(!setValueButton.isEnabled())
-            setValueButton.setEnabled(true);
+        if(setValueButton.isEnabled())
+            setValueButton.setEnabled(false);
     }
 
     @Override
@@ -191,6 +194,7 @@ public class MainActivity extends AppCompatActivity
         setValueButton.setOnClickListener(buttonListener);
         pullLeverButton.setOnClickListener(buttonListener);
         pullLeverButton.setEnabled(false);
+        setValueButton.setEnabled(false);
         amountInput.addTextChangedListener(amountInputTextWatcher);
     }
 }
