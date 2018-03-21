@@ -16,6 +16,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".WarriorActivity"
+            android:label="@string/first_character_name" />
+        <activity
+            android:name=".MageActivity"
+            android:label="@string/second_character_name" />
+        <activity
+            android:name=".HealerActivity"
+            android:label="@string/third_character_name" />
+        <activity
+            android:name=".HunterActivity"
+            android:label="@string/fourth_character_name" />
+        <activity
+            android:name=".PaladinActivity"
+            android:label="@string/fifth_character_name" />
     </application>
 
 </manifest>

@@ -1,8 +1,16 @@
 <resources>
+    <!-- Titles -->
     <string name="app_name">Character Creator</string>
     <string name="first_character_name">Warrior</string>
     <string name="second_character_name">Mage</string>
     <string name="third_character_name">Healer</string>
     <string name="fourth_character_name">Hunter</string>
     <string name="fifth_character_name">Paladin</string>
+
+    <!-- Titles -->
+    <string name="character_first_attribute">Strength</string>
+    <string name="character_second_attribute">Intellect</string>
+    <string name="character_third_attribute">Wisdom</string>
+    <string name="character_fourth_attribute">Dexterity</string>
+    <string name="character_used_point">Points left to spend: </string>
 </resources>
